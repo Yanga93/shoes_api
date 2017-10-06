@@ -29,8 +29,8 @@ router.get("/shoes/size/:size", function(req, res) {
 router.get("/shoes/brand/:brandname/size/:size", function(req, res) {
   const brandname = req.params.brandname;
   const size = req.params.size;
-  res.send({
-    type: 'get list of shoes for a given brand and size on the db'
+  Shoe.find({brand:brandname, size:size}).then(function(shoe) {
+    res.send(shoe);
   });
 });
 
