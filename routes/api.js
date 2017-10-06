@@ -4,8 +4,8 @@ const Shoe = require('../models/shoe');
 
 //get a list of all shoes from the database
 router.get("/shoes", function(req, res) {
-  res.send({
-    type: 'get a list of all shoes from the db'
+  Shoe.find(req.body).then(function(shoe) {
+    res.send(shoe);
   });
 });
 
