@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-
-
+const Shoe = require('../models/shoe');
 
 //get a list of all shoes from the database
 router.get("/shoes", function(req, res) {
@@ -38,9 +36,8 @@ router.get("/shoes/brand/:brandname/size/:size", function(req, res) {
 
 //Add a new shoe to the stock db
 router.post("/shoes", function(req, res) {
-console.log(req.body);
-  res.send({
-    type: 'POST'
+  Shoe.create(req.body).then(function(shoe) {
+    res.send(shoe);
   });
 });
 
@@ -50,6 +47,5 @@ router.put("/shoes/sold/:id", function(req, res) {
     type: 'Update the stock levels when a shoe is sold to the db'
   });
 });
-
 
 module.exports = router;
