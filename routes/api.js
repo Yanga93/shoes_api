@@ -38,8 +38,9 @@ router.get("/shoes/brand/:brandname/size/:size", function(req, res) {
 
 //Add a new shoe to the stock db
 router.post("/shoes", function(req, res) {
+console.log(req.body);
   res.send({
-    type: 'Add a new shoe to the stock db'
+    type: 'POST'
   });
 });
 
