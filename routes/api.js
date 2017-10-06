@@ -9,19 +9,19 @@ router.get("/shoes", function(req, res) {
   });
 });
 
-//get list all of shoes for a given brand
+//get list of all shoes for a given brand
 router.get("/shoes/brand/:brandname", function(req, res) {
   const brandname = req.params.brandname;
-  res.send({
-    type: brandname
+  Shoe.find({brand:brandname}).then(function(shoe) {
+    res.send(shoe);
   });
 });
 
 //get list of all shoes for a given size
 router.get("/shoes/size/:size", function(req, res) {
   const size = req.params.size;
-  res.send({
-    type: size
+  Shoe.find({size:size}).then(function(shoe) {
+    res.send(shoe);
   });
 });
 
@@ -41,10 +41,10 @@ router.post("/shoes", function(req, res) {
   });
 });
 
-//Update the stock levels when a shoe is sold to the db
-router.put("/shoes/sold/:id", function(req, res) {
-  res.send({
-    type: 'Update the stock levels when a shoe is sold to the db'
+//Update the stock levels when a shoe is sold on the db
+router.delete("/shoes/sold/:id", function(req, res) {
+  Shoe.find({size:size}).then(function(shoe) {
+    res.send(shoe);
   });
 });
 
