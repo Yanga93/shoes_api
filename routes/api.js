@@ -49,12 +49,23 @@ router.post("/shoes", function(req, res) {
 });
 
 //Update the stock levels when a shoe is sold on the db
-router.delete("/shoes/sold/:id", function(req, res) {
-  Shoe.find({
-    size: size
-  }).then(function(shoe) {
-    res.send(shoe);
+router.post("/shoes/sold/:id", function(req, res) {
+  var uniqueId = req.params.id
+  Shoe.findOneAndUpdate({
+    _id: uniqueId
+  }, {
+    $inc: {
+      in_stock: -1
+    }
+  }, function(error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      res.send(results)
+    }
   });
+
+
 });
 
 module.exports = router;
