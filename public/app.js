@@ -1,12 +1,32 @@
+//compile handlebars
+var outputTable = document.getElementById('outputTable');
+var scriptTemplate = document.getElementById('dataTable');
+var dataTable = document.getElementById('data-table');
+var compileTable = Handlebars.compile(scriptTemplate.innerHTML);
+
+
 $(function() {
-  var $orders = $('#shoes-output');
   $.ajax({
-    url: 'http://localhost:4000/api/shoes',
-    type: 'get',
-  }).done(function(data) {
-    console.log(data);
-    $.each($orders, function (i, order) {
-      $orders.append('<li>my shoe order</li>');
+    type: 'GET',
+    url: '/api/shoes',
+    success: function(data) {
+      console.log(data);
+      compileTable({data})
+      outputTable.innerHTML = compileTable({shoe:data
+        //console.log(compileTable);
+      })
+      console.log(compileTable({shoe:data}));
+    }
+  });
+});
+
+
+// This functions alllows us to search throw stock by given brand, size, quantity and color
+$(document).ready(function() {
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").each(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
-  })
+  });
 });
