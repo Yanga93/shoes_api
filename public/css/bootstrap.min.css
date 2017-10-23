@@ -5,6 +5,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+#outputTable {
+  padding-left: 14em;
+  padding-right: 5em;
+}
+
 @media print {
   *, ::after, ::before {
     text-shadow: none!important;

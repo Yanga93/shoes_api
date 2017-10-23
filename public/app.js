@@ -6,18 +6,55 @@ var compileTable = Handlebars.compile(scriptTemplate.innerHTML);
 
 
 $(function() {
-  $.ajax({
-    type: 'GET',
-    url: '/api/shoes',
-    success: function(data) {
-      console.log(data);
-      compileTable({data})
-      outputTable.innerHTML = compileTable({shoe:data
-        //console.log(compileTable);
-      })
-      console.log(compileTable({shoe:data}));
-    }
-  });
+
+  var $brand = $('#brand-new-stock');
+  var $color = $('#color-new-stock');
+  var $size = $('#size-new-stock');
+  var $price = $('#price-new-stock');
+  var $quantity = $('#quantity-new-stock');
+
+  function displayStock() {
+    $.ajax({
+      type: 'GET',
+      url: '/api/shoes',
+      success: function(data) {
+        compileTable({
+          data
+        })
+        outputTable.innerHTML = compileTable({
+          shoe: data
+        })
+      }
+    });
+  }
+  displayStock();
+
+  $('#send-item').on('click', function() {
+
+    var shoe = {
+      brand: $brand.val(),
+      color: $color.val(),
+      size: $size.val(),
+      price: $price.val(),
+      in_stock: $quantity.val()
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/shoes',
+      data: shoe,
+      success: function(newShoe) {
+        displayStock();
+      }
+    })
+
+    $brand.val() = ""
+    $color.val() = ""
+    $size.val() = ""
+    $price.val() = ""
+    $quantity.val() = ""
+
+  })
 });
 
 
