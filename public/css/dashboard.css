@@ -2,10 +2,13 @@
  * Base structure
  */
 
+
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
+
 body {
   padding-top: 3.5rem;
 }
+
 
 /*
  * Typography
@@ -16,6 +19,7 @@ h1 {
   padding-bottom: 9px;
   border-bottom: 1px solid #eee;
 }
+
 
 /*
  * Sidebar
@@ -29,11 +33,14 @@ h1 {
   z-index: 1000;
   padding: 20px;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  border-right: 1px solid #eee;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+  border-right: 1px solid #353232;
 }
 
+
 /* Sidebar navigation */
+
 .sidebar {
   padding-left: 0;
   padding-right: 0;
@@ -47,7 +54,7 @@ h1 {
   width: 100%;
 }
 
-.sidebar .nav-item + .nav-item {
+.sidebar .nav-item+.nav-item {
   margin-left: 0;
 }
 
@@ -55,11 +62,14 @@ h1 {
   border-radius: 0;
 }
 
+
 /*
  * Dashboard
  */
 
- /* Placeholders */
+
+/* Placeholders */
+
 .placeholders {
   padding-bottom: 3rem;
 }

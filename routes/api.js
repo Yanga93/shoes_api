@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Shoe = require('../models/shoe');
+// const ObjectId = require('mongoDB').ObjectId;
 
 //get a list of all shoes from the database
 router.get("/shoes", function(req, res) {
@@ -52,11 +53,13 @@ router.post("/shoes", function(req, res) {
 router.post("/shoes/sold/:id", function(req, res) {
   var uniqueId = req.params.id
   Shoe.findOneAndUpdate({
-    _id: uniqueId
+    _id: ObjectId(uniqueId)
   }, {
     $inc: {
       in_stock: -1
     }
+  }, {
+    upset : false
   }, function(error, results) {
     if (error) {
       console.log(error);

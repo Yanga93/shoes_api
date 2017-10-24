@@ -87,7 +87,8 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #5B6875;
-  background-color: #0C2327
+  /*background-color: #0C2327;*/
+  background-color: rgba(248, 249, 250, 0);
 }
 
 [tabindex="-1"]:focus {
@@ -5017,7 +5018,7 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 .bg-light {
-  background-color: #f8f9fa!important
+  background-color: #373B3E!important;
 }
 
 a.bg-light:focus, a.bg-light:hover {

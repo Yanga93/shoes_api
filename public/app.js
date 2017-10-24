@@ -48,13 +48,27 @@ $(function() {
       }
     })
 
-    $brand.val() = ""
-    $color.val() = ""
-    $size.val() = ""
-    $price.val() = ""
-    $quantity.val() = ""
-
+    document.getElementById('brand-new-stock').value = ""
+    document.getElementById('color-new-stock').value = ""
+    document.getElementById('size-new-stock').value = ""
+    document.getElementById('price-new-stock').value = ""
+    document.getElementById('quantity-new-stock').value = ""
   })
+
+  $('#add-cart').on('click', function(idea) {
+    var id = id.target.value;
+    console.log(idea.value);
+    $.ajax({
+      type: "POST",
+      url: "/api/shoes/sold/" + id,
+      success: function(soldShoe) {
+        // console.log(soldShoe);
+
+          displayStock();
+      }
+    });
+  });
+
 });
 
 
