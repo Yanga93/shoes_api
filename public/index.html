@@ -34,14 +34,16 @@
         </thead>
         <tbody id="myTable">
           {{#each shoe}}
-          <tr>
-            <td>{{brand}}</td>
-            <td>{{color}}</td>
-            <td>{{size}}</td>
-            <td>{{price}}</td>
-            <td>{{in_stock}}</td>
-        <td><button type="button" class="btn btn-danger" value="{{_id}}" id="add-cart" onclick="addToCart('{{_id}}')">Add to Cart</button>
-          </tr>
+            {{#if in_stock}}
+              <tr>
+                <td>{{brand}}</td>
+                <td>{{color}}</td>
+                <td>{{size}}</td>
+                <td>{{price}}</td>
+                <td>{{in_stock}}</td>
+                <td><button type="button" class="btn btn-danger" value="{{_id}}" id="add-cart" onclick="addToCart('{{_id}}')">Add to Cart</button>
+              </tr>
+             {{/if}}
           {{/each}}
         </tbody>
       </table>
