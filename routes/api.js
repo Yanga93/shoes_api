@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Shoe = require('../models/shoe');
-// const ObjectId = require('mongoDB').ObjectId;
+const ObjectId = require('mongodb').ObjectId;
+//console.log(ObjectId);
 
 //get a list of all shoes from the database
 router.get("/shoes", function(req, res) {
@@ -43,10 +44,34 @@ router.get("/shoes/brand/:brandname/size/:size", function(req, res) {
 });
 
 //Add a new shoe to the stock db
-router.post("/shoes", function(req, res) {
-  Shoe.create(req.body).then(function(shoe) {
-    res.send(shoe);
-  });
+router.post("/shoes", function(req, res, next) {
+  var brand = req.body.brand;
+  var color = req.body.color;
+  var size = req.body.size;
+  var price = req.body.price;
+  var in_stock = req.body.in_stock
+
+  Shoe.findOneAndUpdate({
+      brand: brand,
+      color: color,
+      size: size,
+      price: price
+    }, {
+      $inc: {
+        in_stock: in_stock
+      }
+    },
+    function(err, results) {
+
+      if (err) {
+        throw err;
+      } else if (!results) {
+
+        Shoe.create(req.body).then(function(shoe) {
+          res.send(shoe);
+        });
+      }
+    })
 });
 
 //Update the stock levels when a shoe is sold on the db
@@ -59,7 +84,7 @@ router.post("/shoes/sold/:id", function(req, res) {
       in_stock: -1
     }
   }, {
-    upset : false
+    upset: false
   }, function(error, results) {
     if (error) {
       console.log(error);

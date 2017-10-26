@@ -24,23 +24,23 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Color</th>
             <th>Brand</th>
-            <th>Price</th>
+            <th>Color</th>
             <th>Size</th>
+            <th>Price</th>
             <th>In_Stock</th>
-            <!-- <th>Add Cart</th> -->
+            <th>Add Cart</th>
           </tr>
         </thead>
         <tbody id="myTable">
           {{#each shoe}}
           <tr>
-            <td>{{color}}</td>
             <td>{{brand}}</td>
-            <td>{{price}}</td>
+            <td>{{color}}</td>
             <td>{{size}}</td>
+            <td>{{price}}</td>
             <td>{{in_stock}}</td>
-            <!-- <td><button type="button" class="btn btn-primary" value="{{_id}}" id="add-cart">Add Cart</button> -->
+            <td><button type="button" class="btn btn-primary" value="{{_id}}" id="add-cart">Add Cart</button>
           </tr>
           {{/each}}
         </tbody>
@@ -64,7 +64,7 @@
         </li><br>
 
         <li class="nav-item">
-          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Update Stock</button> -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Update Stock</button>
           <div class="modal " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -116,22 +116,22 @@
           <div class="col-6 col-sm-3 placeholder">
             <img src="./img/superga.jpg" width="200" height="200" class="rounded" alt="Generic placeholder thumbnail">
             <h4>Superga</h4>
-            <!-- <div class="text-muted">Something else</div> -->
+            <div class="text-muted">Something else</div>
           </div>
           <div class="col-6 col-sm-3 placeholder">
             <img src="./img/white-superga.jpg" width="200" height="200" class="rounded" alt="Generic placeholder thumbnail">
             <h4>Superga</h4>
-            <!-- <span class="text-muted">Something else</span> -->
+            <span class="text-muted">Something else</span>
           </div>
           <div class="col-6 col-sm-3 placeholder">
             <img src="./img/superga.jpg" width="200" height="200" class="rounded" alt="Generic placeholder thumbnail">
             <h4>Superga</h4>
-            <!-- <span class="text-muted">Something else</span> -->
+            <span class="text-muted">Something else</span>
           </div>
           <div class="col-6 col-sm-3 placeholder">
             <img src="img/white-superga.jpg" width="200" height="200" class="rounded" alt="Generic placeholder thumbnail">
             <h4>Superga</h4>
-            <!-- <span class="text-muted">Something else</span> -->
+            <span class="text-muted">Something else</span>
           </div>
         </section>
       </main>
