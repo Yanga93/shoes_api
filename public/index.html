@@ -40,7 +40,7 @@
             <td>{{size}}</td>
             <td>{{price}}</td>
             <td>{{in_stock}}</td>
-            <td><button type="button" class="btn btn-primary" value="{{_id}}" id="add-cart">Add Cart</button>
+        <td><button type="button" class="btn btn-danger" value="{{_id}}" id="add-cart" onclick="addToCart('{{_id}}')">Add to Cart</button>
           </tr>
           {{/each}}
         </tbody>

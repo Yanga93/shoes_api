@@ -4,73 +4,63 @@ var scriptTemplate = document.getElementById('dataTable');
 var dataTable = document.getElementById('data-table');
 var compileTable = Handlebars.compile(scriptTemplate.innerHTML);
 
+var $brand = $('#brand-new-stock');
+var $color = $('#color-new-stock');
+var $size = $('#size-new-stock');
+var $price = $('#price-new-stock');
+var $quantity = $('#quantity-new-stock');
 
-$(function() {
+function displayStock() {
+  $.ajax({
+    type: 'GET',
+    url: '/api/shoes',
+    success: function(data) {
+      compileTable({
+        data
+      })
+      outputTable.innerHTML = compileTable({
+        shoe: data
+      })
+    }
+  });
+}
+displayStock();
 
-  var $brand = $('#brand-new-stock');
-  var $color = $('#color-new-stock');
-  var $size = $('#size-new-stock');
-  var $price = $('#price-new-stock');
-  var $quantity = $('#quantity-new-stock');
+$('#send-item').on('click', function() {
 
-  function displayStock() {
-    $.ajax({
-      type: 'GET',
-      url: '/api/shoes',
-      success: function(data) {
-        compileTable({
-          data
-        })
-        outputTable.innerHTML = compileTable({
-          shoe: data
-        })
-      }
-    });
-  }
-  displayStock();
+  var shoe = {
+    brand: $brand.val(),
+    color: $color.val(),
+    size: $size.val(),
+    price: $price.val(),
+    in_stock: $quantity.val()
+  };
 
-  $('#send-item').on('click', function() {
-
-    var shoe = {
-      brand: $brand.val(),
-      color: $color.val(),
-      size: $size.val(),
-      price: $price.val(),
-      in_stock: $quantity.val()
-    };
-
-    $.ajax({
-      type: 'POST',
-      url: '/api/shoes',
-      data: shoe,
-      success: function(newShoe) {
-        displayStock();
-      }
-    })
-
-    document.getElementById('brand-new-stock').value = ""
-    document.getElementById('color-new-stock').value = ""
-    document.getElementById('size-new-stock').value = ""
-    document.getElementById('price-new-stock').value = ""
-    document.getElementById('quantity-new-stock').value = ""
+  $.ajax({
+    type: 'POST',
+    url: '/api/shoes',
+    data: shoe,
+    success: function(newShoe) {
+      displayStock();
+    }
   })
 
-  $('#add-cart').on('click', function(idea) {
-    var id = id.target.value;
-    console.log(idea.value);
-    $.ajax({
-      type: "POST",
-      url: "/api/shoes/sold/" + id,
-      success: function(soldShoe) {
-        // console.log(soldShoe);
+  document.getElementById('brand-new-stock').value = ""
+  document.getElementById('color-new-stock').value = ""
+  document.getElementById('size-new-stock').value = ""
+  document.getElementById('price-new-stock').value = ""
+  document.getElementById('quantity-new-stock').value = ""
+})
 
-          displayStock();
-      }
-    });
+function addToCart(id) {
+  $.ajax({
+    type: "POST",
+    url: "/api/shoes/sold/" + id,
+    success: function(soldShoe) {
+      displayStock();
+    }
   });
-
-});
-
+}
 
 // This functions alllows us to search throw stock by given brand, size, quantity and color
 $(document).ready(function() {
